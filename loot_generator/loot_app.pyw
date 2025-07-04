@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, messagebox, scrolledtext, simpledialog
+from tkinter import ttk, messagebox, simpledialog
 import tkinter.font as tkfont
 import json
 import os
@@ -22,6 +22,48 @@ from utils import (
     get_dataset_root,
     get_data_path,
 )
+
+
+class ListboxTooltip:
+    """Display a tooltip for listbox items on hover."""
+
+    def __init__(self, listbox, descriptions):
+        self.listbox = listbox
+        self.descriptions = descriptions
+        self.tipwin = None
+        self.current_index = None
+        listbox.bind("<Motion>", self._on_motion)
+        listbox.bind("<Leave>", self._hide)
+
+    def _on_motion(self, event):
+        index = self.listbox.nearest(event.y)
+        if index != self.current_index:
+            self._hide()
+            desc = self.descriptions.get(index)
+            if desc:
+                bbox = self.listbox.bbox(index)
+                if bbox:
+                    x, y, width, height = bbox
+                    x += self.listbox.winfo_rootx() + width + 2
+                    y += self.listbox.winfo_rooty() + height // 2
+                    self.tipwin = tw = tk.Toplevel(self.listbox)
+                    tw.wm_overrideredirect(True)
+                    tw.wm_geometry(f"+{x}+{y}")
+                    label = ttk.Label(
+                        tw,
+                        text=desc,
+                        background="lightyellow",
+                        relief="solid",
+                        borderwidth=1,
+                    )
+                    label.pack()
+                    self.current_index = index
+
+    def _hide(self, event=None):
+        if self.tipwin is not None:
+            self.tipwin.destroy()
+            self.tipwin = None
+            self.current_index = None
 
 
 def select_game_system(root=None) -> str:
@@ -149,8 +191,19 @@ class LootGeneratorApp:
         ttk.Button(frame, text="Delete Preset", command=self.delete_preset).grid(row=10, column=0, columnspan=2)
 
         ttk.Label(frame, text="Generated Loot:").grid(row=11, column=0, sticky=tk.W)
-        self.output_area = scrolledtext.ScrolledText(frame, height=8)
-        self.output_area.grid(row=12, column=0, columnspan=2, sticky=tk.NSEW, pady=5)
+        self.output_frame = ttk.Frame(frame)
+        self.output_frame.grid(row=12, column=0, columnspan=2, sticky=tk.NSEW, pady=5)
+        self.output_listbox = tk.Listbox(self.output_frame, height=8)
+        self.output_listbox.grid(row=0, column=0, sticky=tk.NSEW)
+        output_scroll = ttk.Scrollbar(
+            self.output_frame, orient="vertical", command=self.output_listbox.yview
+        )
+        output_scroll.grid(row=0, column=1, sticky=tk.NS)
+        self.output_listbox.configure(yscrollcommand=output_scroll.set)
+        self.output_frame.columnconfigure(0, weight=1)
+        self.output_frame.rowconfigure(0, weight=1)
+        self.generated_descriptions = {}
+        self.tooltip = ListboxTooltip(self.output_listbox, self.generated_descriptions)
 
         ttk.Button(frame, text="Show Tags", command=self.show_tags).grid(row=13, column=0, columnspan=2, pady=5)
 
@@ -228,7 +281,8 @@ class LootGeneratorApp:
             self.materials,
         )
 
-        self.output_area.delete('1.0', tk.END)
+        self.output_listbox.delete(0, tk.END)
+        self.generated_descriptions.clear()
         if loot:
             item_counts = {}
             for item in loot:
@@ -237,22 +291,25 @@ class LootGeneratorApp:
                 else:
                     item_counts[item.name] = {"item": item, "count": 1}
 
+            index = 0
             for data in item_counts.values():
                 item = data["item"]
                 count = data["count"]
                 tags_str = ", ".join(item.tags)
                 if count > 1:
-                    self.output_area.insert(
-                        tk.END,
-                        f"{count}x {item.name} (Rarity: {item.rarity}, Tags: {tags_str}) - {item.description} [{item.point_value} points each]\n",
+                    text = (
+                        f"{count}x {item.name} (Rarity: {item.rarity}, Tags: {tags_str}) [{item.point_value} points each]"
                     )
                 else:
-                    self.output_area.insert(
-                        tk.END,
-                        f"{item.name} (Rarity: {item.rarity}, Tags: {tags_str}) - {item.description} [{item.point_value} points]\n",
+                    text = (
+                        f"{item.name} (Rarity: {item.rarity}, Tags: {tags_str}) [{item.point_value} points]"
                     )
+                self.output_listbox.insert(tk.END, text)
+                self.generated_descriptions[index] = item.description
+                index += 1
         else:
-            self.output_area.insert(tk.END, "No loot items matched your criteria.\n")
+            self.output_listbox.insert(tk.END, "No loot items matched your criteria.")
+            self.generated_descriptions[0] = ""
 
 
     def load_preset(self):
