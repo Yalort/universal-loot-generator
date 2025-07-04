@@ -41,11 +41,14 @@ a preset, or **Delete Preset** to remove it.
 
 Use the **Items** tab to manage loot items. Click **Add Item** for a single
 entry or **Bulk Add Items** to paste many at once. Existing entries can be
-modified with **Edit Item** or removed with **Delete Item**. In bulk mode, enter
-one item per line as `name|rarity|description|point_value|tag1,tag2`. All added
+ modified with **Edit Item** or removed with **Delete Item**. In bulk mode, enter
+one item per line as `name|rarity|description|point_value|tag1,tag2|size|period`. All added
 items are saved to `loot_items.json` and become available for future loot
 generation.
 
+
+Valid sizes are `tiny`, `small`, `midsize`, `large` and `huge`. Valid time
+periods are `tribal`, `medieval`, `modern`, `postmodern` and `spacer`.
 When adding a single item the form asks for the same fields individually.
 `Rarity` and `Point Value` must be integers while `Tags` are entered as a
 comma‑separated list. The `Name` field may contain material placeholders such
@@ -53,6 +56,7 @@ as `[Metal]` or `[Stone/o]` which are resolved using the materials list when
 loot is generated. For example, entering `[Metal] Dagger` with rarity `3`,
 description `Sturdy blade`, value `10` and tags `weapon,melee` could create an
 "Iron Dagger" if a material named "Iron" exists.
+
 
 ## Managing Materials
 
