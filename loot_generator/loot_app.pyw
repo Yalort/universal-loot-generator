@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox, scrolledtext, simpledialog
 import tkinter.font as tkfont
 import json
+import os
 from utils import (
     load_loot_items,
     load_all_tags,
@@ -14,8 +15,61 @@ from utils import (
     load_materials,
     save_materials,
     Material,
-    _resolve,
+    list_game_systems,
+    ensure_game_system,
+    rename_game_system,
+    set_game_system,
+    get_dataset_root,
+    get_data_path,
 )
+
+
+def select_game_system(root=None) -> str:
+    """Display a simple dialog to choose or create a game system."""
+    win = tk.Toplevel(root) if root else tk.Tk()
+    win.title("Select Game System")
+    os.makedirs(get_dataset_root(), exist_ok=True)
+
+    systems_var = tk.StringVar(value=list_game_systems())
+    listbox = tk.Listbox(win, listvariable=systems_var, height=5)
+    listbox.grid(row=0, column=0, columnspan=3, sticky=tk.NSEW, padx=10, pady=5)
+
+    def refresh():
+        systems_var.set(list_game_systems())
+
+    def create():
+        name = simpledialog.askstring("New Game System", "Name:", parent=win)
+        if name:
+            ensure_game_system(name)
+            refresh()
+
+    def rename():
+        sel = listbox.curselection()
+        if not sel:
+            return
+        old = listbox.get(sel[0])
+        new = simpledialog.askstring("Rename", "New name:", initialvalue=old, parent=win)
+        if new:
+            rename_game_system(old, new)
+            refresh()
+
+    def choose():
+        sel = listbox.curselection()
+        if not sel:
+            messagebox.showerror("Error", "Select a game system.", parent=win)
+            return
+        win.selected = listbox.get(sel[0])
+        win.destroy()
+
+    ttk.Button(win, text="New", command=create).grid(row=1, column=0, padx=5, pady=5)
+    ttk.Button(win, text="Rename", command=rename).grid(row=1, column=1, padx=5, pady=5)
+    ttk.Button(win, text="Select", command=choose).grid(row=1, column=2, padx=5, pady=5)
+
+    for i in range(3):
+        win.columnconfigure(i, weight=1)
+
+    win.mainloop()
+    return getattr(win, "selected", "")
 
 
 class LootGeneratorApp:
@@ -31,6 +85,12 @@ class LootGeneratorApp:
         self.update_preset_listbox()
 
     def setup_ui(self):
+        menubar = tk.Menu(self.root)
+        system_menu = tk.Menu(menubar, tearoff=0)
+        system_menu.add_command(label="Change Game System", command=self.change_game_system)
+        menubar.add_cascade(label="System", menu=system_menu)
+        self.root.config(menu=menubar)
+
         notebook = ttk.Notebook(self.root)
         notebook.pack(fill=tk.BOTH, expand=True)
 
@@ -535,14 +595,14 @@ class LootGeneratorApp:
 
     def update_loot_file(self):
         self.update_tag_list()
-        with open(_resolve('data/loot_items.json'), 'w') as file:
+        with open(get_data_path('loot_items.json'), 'w') as file:
             json.dump({
                 "items": [item.__dict__ for item in self.loot_items],
                 "tags": self.all_tags,
             }, file, indent=4)
 
     def update_material_file(self):
-        with open(_resolve('data/materials.json'), 'w') as file:
+        with open(get_data_path('materials.json'), 'w') as file:
             json.dump({"materials": [m.__dict__ for m in self.materials]}, file, indent=4)
 
     def populate_items_tree(self):
@@ -603,7 +663,22 @@ class LootGeneratorApp:
             except tk.TclError:
                 pass
 
+    def change_game_system(self):
+        system = select_game_system(self.root)
+        if system:
+            set_game_system(system)
+            self.loot_items = load_loot_items()
+            self.all_tags = load_all_tags()
+            self.presets = load_presets()
+            self.materials = load_materials()
+            self.update_preset_listbox()
+            self.populate_items_tree()
+            self.populate_materials_tree()
+
 if __name__ == "__main__":
+    system = select_game_system()
+    if system:
+        set_game_system(system)
     root = tk.Tk()
     app = LootGeneratorApp(root)
     root.mainloop()
