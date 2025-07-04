@@ -50,7 +50,7 @@ generation.
 Valid sizes are `tiny`, `small`, `midsize`, `large` and `huge`. Valid time
 periods are `tribal`, `medieval`, `modern`, `postmodern` and `spacer`.
 When adding a single item the form asks for the same fields individually.
-`Rarity` and `Point Value` must be integers while `Tags` are entered as a
+`Rarity` must be an integer while `Point Value` can be a decimal number no less than `0.0001`. `Tags` are entered as a
 comma‑separated list. The `Name` field may contain material placeholders such
 as `[Metal]` or `[Stone/o]` which are resolved using the materials list when
 loot is generated. For example, entering `[Metal] Dagger` with rarity `3`,

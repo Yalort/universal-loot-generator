@@ -127,6 +127,12 @@ def test_parse_items_text_invalid():
         utils.parse_items_text(text)
 
 
+def test_parse_items_text_decimal_value():
+    text = "Gem|1|Shiny|0.5|misc|small|modern"
+    items = utils.parse_items_text(text)
+    assert items[0].point_value == 0.5
+
+
 def test_resolve_material_placeholders_required():
     materials = [utils.Material("Steel", 1.2, "Metal")]
     name, value = utils.resolve_material_placeholders("[Metal] Sword", 10, materials)

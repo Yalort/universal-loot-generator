@@ -15,7 +15,7 @@ class LootItem:
     name: str
     rarity: int
     description: str
-    point_value: int
+    point_value: float
     tags: List[str]
     size: str = "midsize"
     period: str = "modern"
@@ -139,7 +139,7 @@ def load_loot_items(filepath: Optional[str] = None):
                 item.get("name"),
                 item.get("rarity"),
                 item.get("description", ""),
-                item.get("point_value"),
+                float(item.get("point_value")),
                 item.get("tags", []),
                 item.get("size", "midsize"),
                 item.get("period", "modern"),
@@ -231,7 +231,7 @@ def generate_loot(
             )
 
     loot = []
-    total_points = 0
+    total_points = 0.0
 
     if not filtered_items:
         return loot
@@ -252,7 +252,7 @@ def generate_loot(
     return loot
 
 
-def resolve_material_placeholders(name: str, value: int, materials: List[Material]) -> (str, int):
+def resolve_material_placeholders(name: str, value: float, materials: List[Material]) -> (str, float):
     """Replace material placeholders in ``name`` using provided materials.
 
     Placeholders are of the form ``[Metal]`` or ``[Metal/o]``. Multiple material
@@ -280,7 +280,7 @@ def resolve_material_placeholders(name: str, value: int, materials: List[Materia
         return mat.name
 
     new_name = pattern.sub(repl, name)
-    new_value = int(round(value * modifiers))
+    new_value = round(value * modifiers, 4)
     return new_name.strip(), new_value
 
 
@@ -301,7 +301,9 @@ def parse_items_text(text: str) -> List[LootItem]:
             raise ValueError("Each line must contain seven '|' separated fields")
         name, rarity_str, description, value_str, tags_str, size, period = parts
         rarity = int(rarity_str)
-        point_value = int(value_str)
+        point_value = float(value_str)
+        if point_value < 0.0001:
+            raise ValueError("point_value must be at least 0.0001")
         tags = [t.strip() for t in tags_str.split(",") if t.strip()]
         items.append(LootItem(name, rarity, description, point_value, tags, size, period))
 
