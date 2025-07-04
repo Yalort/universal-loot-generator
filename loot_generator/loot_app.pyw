@@ -179,12 +179,15 @@ class LootGeneratorApp:
 
         ttk.Label(frame, text="Largest Size:").grid(row=5, column=0, sticky=tk.W)
         self.size_var = tk.IntVar(value=len(SIZES) - 1)
+        self.size_label = ttk.Label(frame, text=SIZES[self.size_var.get()])
+        self.size_label.grid(row=5, column=2, sticky=tk.W, padx=(5, 0))
         tk.Scale(
             frame,
             from_=0,
             to=len(SIZES) - 1,
             orient=tk.HORIZONTAL,
             variable=self.size_var,
+            command=lambda val: self.size_label.config(text=SIZES[int(float(val))]),
             showvalue=False,
         ).grid(row=5, column=1, sticky=tk.EW)
 
