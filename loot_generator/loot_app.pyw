@@ -417,11 +417,14 @@ class LootGeneratorApp:
 
         def save_new_item():
             try:
+                pv = float(entries["Point Value"].get())
+                if pv < 0.0001:
+                    raise ValueError("Point Value must be at least 0.0001")
                 item = LootItem(
                     name=entries["Name"].get(),
                     rarity=int(entries["Rarity (numeric, higher is rarer)"].get()),
                     description=entries["Description"].get(),
-                    point_value=int(entries["Point Value"].get()),
+                    point_value=pv,
                     tags=[tag.strip() for tag in entries["Tags (comma-separated)"].get().split(',')],
                     size=entries["Size (tiny/small/midsize/large/huge)"].get() or "midsize",
                     period=entries["Period (tribal/medieval/modern/postmodern/spacer)"].get() or "modern",
@@ -472,7 +475,10 @@ class LootGeneratorApp:
                 item.name = entries["Name"].get()
                 item.rarity = int(entries["Rarity (numeric, higher is rarer)"].get())
                 item.description = entries["Description"].get()
-                item.point_value = int(entries["Point Value"].get())
+                pv = float(entries["Point Value"].get())
+                if pv < 0.0001:
+                    raise ValueError("Point Value must be at least 0.0001")
+                item.point_value = pv
                 item.tags = [t.strip() for t in entries["Tags (comma-separated)"].get().split(',') if t.strip()]
                 item.size = entries["Size (tiny/small/midsize/large/huge)"].get() or "midsize"
                 item.period = entries["Period (tribal/medieval/modern/postmodern/spacer)"].get() or "modern"
