@@ -46,8 +46,17 @@ one item per line as `name|rarity|description|point_value|tag1,tag2|size|period`
 items are saved to `loot_items.json` and become available for future loot
 generation.
 
+
 Valid sizes are `tiny`, `small`, `midsize`, `large` and `huge`. Valid time
 periods are `tribal`, `medieval`, `modern`, `postmodern` and `spacer`.
+When adding a single item the form asks for the same fields individually.
+`Rarity` and `Point Value` must be integers while `Tags` are entered as a
+comma‑separated list. The `Name` field may contain material placeholders such
+as `[Metal]` or `[Stone/o]` which are resolved using the materials list when
+loot is generated. For example, entering `[Metal] Dagger` with rarity `3`,
+description `Sturdy blade`, value `10` and tags `weapon,melee` could create an
+"Iron Dagger" if a material named "Iron" exists.
+
 
 ## Managing Materials
 
@@ -61,3 +70,10 @@ Material**, **Bulk Add Materials** and **Delete Material** actions. Optional
 placeholders denoted with `/o` may resolve to an empty string, allowing items
 like `[Metal] [Stone/o] Earring` or `[Wood/Metal/o] Shield` to generate with or
 without the material name.
+
+The single **Add Material** dialog accepts a `Name`, numeric `Modifier`, and
+`Type`. `Modifier` is a multiplier applied to an item's point value when the
+material is used. `Type` must match one of the placeholder categories above.
+For example entering `Steel` with a modifier of `1.2` and type `Metal` allows a
+placeholder like `[Metal] Sword` to produce `Steel Sword` valued at 20% higher
+than the base item.
