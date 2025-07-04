@@ -41,10 +41,13 @@ a preset, or **Delete Preset** to remove it.
 
 Use the **Items** tab to manage loot items. Click **Add Item** for a single
 entry or **Bulk Add Items** to paste many at once. Existing entries can be
-modified with **Edit Item** or removed with **Delete Item**. In bulk mode, enter
-one item per line as `name|rarity|description|point_value|tag1,tag2`. All added
+ modified with **Edit Item** or removed with **Delete Item**. In bulk mode, enter
+one item per line as `name|rarity|description|point_value|tag1,tag2|size|period`. All added
 items are saved to `loot_items.json` and become available for future loot
 generation.
+
+Valid sizes are `tiny`, `small`, `midsize`, `large` and `huge`. Valid time
+periods are `tribal`, `medieval`, `modern`, `postmodern` and `spacer`.
 
 ## Managing Materials
 

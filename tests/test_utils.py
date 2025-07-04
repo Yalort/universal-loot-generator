@@ -110,7 +110,7 @@ def test_generate_loot_invalid_point_values_raise():
 
 
 def test_parse_items_text_valid():
-    text = "Sword|1|Sharp blade|10|weapon,melee"
+    text = "Sword|1|Sharp blade|10|weapon,melee|midsize|modern"
     items = utils.parse_items_text(text)
     assert len(items) == 1
     item = items[0]

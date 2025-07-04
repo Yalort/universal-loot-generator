@@ -21,6 +21,8 @@ from utils import (
     set_game_system,
     get_dataset_root,
     get_data_path,
+    SIZES,
+    PERIODS,
 )
 
 
@@ -175,24 +177,39 @@ class LootGeneratorApp:
         self.min_rarity_entry = ttk.Entry(frame)
         self.min_rarity_entry.grid(row=4, column=1, sticky=tk.EW)
 
-        ttk.Button(frame, text="Generate Loot", command=self.generate_loot).grid(row=5, column=0, columnspan=2, pady=5)
+        ttk.Label(frame, text="Largest Size:").grid(row=5, column=0, sticky=tk.W)
+        self.size_var = tk.IntVar(value=len(SIZES) - 1)
+        tk.Scale(
+            frame,
+            from_=0,
+            to=len(SIZES) - 1,
+            orient=tk.HORIZONTAL,
+            variable=self.size_var,
+            showvalue=False,
+        ).grid(row=5, column=1, sticky=tk.EW)
 
-        ttk.Label(frame, text="Search Presets:").grid(row=6, column=0, sticky=tk.W)
+        ttk.Label(frame, text="Possible Periods:").grid(row=6, column=0, sticky=tk.W)
+        self.period_listbox = tk.Listbox(frame, listvariable=tk.StringVar(value=PERIODS), selectmode=tk.MULTIPLE, height=5)
+        self.period_listbox.grid(row=6, column=1, sticky=tk.EW)
+
+        ttk.Button(frame, text="Generate Loot", command=self.generate_loot).grid(row=7, column=0, columnspan=2, pady=5)
+
+        ttk.Label(frame, text="Search Presets:").grid(row=8, column=0, sticky=tk.W)
         self.preset_search_var = tk.StringVar()
         self.preset_search_var.trace_add("write", lambda *args: self.update_preset_listbox())
-        ttk.Entry(frame, textvariable=self.preset_search_var).grid(row=6, column=1, sticky=tk.EW)
+        ttk.Entry(frame, textvariable=self.preset_search_var).grid(row=8, column=1, sticky=tk.EW)
 
-        ttk.Label(frame, text="Presets:").grid(row=7, column=0, sticky=tk.W)
+        ttk.Label(frame, text="Presets:").grid(row=9, column=0, sticky=tk.W)
         self.preset_listbox = tk.Listbox(frame, height=5)
-        self.preset_listbox.grid(row=7, column=1, sticky=tk.EW)
+        self.preset_listbox.grid(row=9, column=1, sticky=tk.EW)
 
-        ttk.Button(frame, text="Load Preset", command=self.load_preset).grid(row=8, column=0, columnspan=2)
-        ttk.Button(frame, text="Save Preset", command=self.save_preset).grid(row=9, column=0, columnspan=2)
-        ttk.Button(frame, text="Delete Preset", command=self.delete_preset).grid(row=10, column=0, columnspan=2)
+        ttk.Button(frame, text="Load Preset", command=self.load_preset).grid(row=10, column=0, columnspan=2)
+        ttk.Button(frame, text="Save Preset", command=self.save_preset).grid(row=11, column=0, columnspan=2)
+        ttk.Button(frame, text="Delete Preset", command=self.delete_preset).grid(row=12, column=0, columnspan=2)
 
-        ttk.Label(frame, text="Generated Loot:").grid(row=11, column=0, sticky=tk.W)
+        ttk.Label(frame, text="Generated Loot:").grid(row=13, column=0, sticky=tk.W)
         self.output_frame = ttk.Frame(frame)
-        self.output_frame.grid(row=12, column=0, columnspan=2, sticky=tk.NSEW, pady=5)
+        self.output_frame.grid(row=14, column=0, columnspan=2, sticky=tk.NSEW, pady=5)
         self.output_listbox = tk.Listbox(self.output_frame, height=8)
         self.output_listbox.grid(row=0, column=0, sticky=tk.NSEW)
         output_scroll = ttk.Scrollbar(
@@ -205,10 +222,10 @@ class LootGeneratorApp:
         self.generated_descriptions = {}
         self.tooltip = ListboxTooltip(self.output_listbox, self.generated_descriptions)
 
-        ttk.Button(frame, text="Show Tags", command=self.show_tags).grid(row=13, column=0, columnspan=2, pady=5)
+        ttk.Button(frame, text="Show Tags", command=self.show_tags).grid(row=15, column=0, columnspan=2, pady=5)
 
         frame.columnconfigure(1, weight=1)
-        frame.rowconfigure(12, weight=1)
+        frame.rowconfigure(14, weight=1)
 
 
     def setup_items_tab(self):
@@ -221,7 +238,7 @@ class LootGeneratorApp:
         ttk.Button(button_frame, text="Delete Item", command=self.delete_item).pack(fill=tk.X, pady=2)
         ttk.Button(button_frame, text="Bulk Add Items", command=self.bulk_add_items).pack(fill=tk.X, pady=2)
 
-        columns = ("Name", "Rarity", "Description", "Value", "Tags")
+        columns = ("Name", "Rarity", "Description", "Value", "Tags", "Size", "Period")
         self.items_tree = ttk.Treeview(frame, columns=columns, show="headings")
         for col in columns:
             self.items_tree.heading(col, text=col, command=lambda c=col: self.sort_treeview(self.items_tree, c, False))
@@ -270,6 +287,9 @@ class LootGeneratorApp:
         exclude_tags = [tag.strip() for tag in self.exclude_tags_entry.get().split(',')] if self.exclude_tags_entry.get() else None
         min_rarity = int(self.min_rarity_entry.get()) if self.min_rarity_entry.get() else None
         max_rarity = int(self.max_rarity_entry.get()) if self.max_rarity_entry.get() else None
+        max_size = SIZES[int(self.size_var.get())]
+        selected_periods = [PERIODS[i] for i in self.period_listbox.curselection()]
+        periods = selected_periods if selected_periods else None
 
         loot = generate_loot(
             self.loot_items,
@@ -278,6 +298,8 @@ class LootGeneratorApp:
             exclude_tags,
             min_rarity,
             max_rarity,
+            max_size,
+            periods,
             self.materials,
         )
 
@@ -366,7 +388,15 @@ class LootGeneratorApp:
         add_window = tk.Toplevel(self.root)
         add_window.title("Add New Loot Item")
 
-        fields = ["Name", "Rarity (numeric, higher is rarer)", "Description", "Point Value", "Tags (comma-separated)"]
+        fields = [
+            "Name",
+            "Rarity (numeric, higher is rarer)",
+            "Description",
+            "Point Value",
+            "Tags (comma-separated)",
+            "Size (tiny/small/midsize/large/huge)",
+            "Period (tribal/medieval/modern/postmodern/spacer)",
+        ]
         entries = {}
 
         for idx, field in enumerate(fields):
@@ -382,7 +412,9 @@ class LootGeneratorApp:
                     rarity=int(entries["Rarity (numeric, higher is rarer)"].get()),
                     description=entries["Description"].get(),
                     point_value=int(entries["Point Value"].get()),
-                    tags=[tag.strip() for tag in entries["Tags (comma-separated)"].get().split(',')]
+                    tags=[tag.strip() for tag in entries["Tags (comma-separated)"].get().split(',')],
+                    size=entries["Size (tiny/small/midsize/large/huge)"].get() or "midsize",
+                    period=entries["Period (tribal/medieval/modern/postmodern/spacer)"].get() or "modern",
                 )
                 self.loot_items.append(item)
                 self.update_loot_file()
@@ -414,6 +446,8 @@ class LootGeneratorApp:
             ("Description", item.description),
             ("Point Value", item.point_value),
             ("Tags (comma-separated)", ", ".join(item.tags)),
+            ("Size (tiny/small/midsize/large/huge)", item.size),
+            ("Period (tribal/medieval/modern/postmodern/spacer)", item.period),
         ]
         entries = {}
         for idx, (label, value) in enumerate(fields):
@@ -430,6 +464,8 @@ class LootGeneratorApp:
                 item.description = entries["Description"].get()
                 item.point_value = int(entries["Point Value"].get())
                 item.tags = [t.strip() for t in entries["Tags (comma-separated)"].get().split(',') if t.strip()]
+                item.size = entries["Size (tiny/small/midsize/large/huge)"].get() or "midsize"
+                item.period = entries["Period (tribal/medieval/modern/postmodern/spacer)"].get() or "modern"
                 self.update_loot_file()
                 self.populate_items_tree()
                 messagebox.showinfo("Updated", f"Item '{item.name}' updated.")
@@ -445,7 +481,10 @@ class LootGeneratorApp:
 
         ttk.Label(
             bulk_window,
-            text="Enter items one per line as name|rarity|description|point_value|tag1,tag2",
+            text=(
+                "Enter items one per line as "
+                "name|rarity|description|point_value|tag1,tag2|size|period"
+            ),
         ).pack(pady=5)
         text_area = tk.Text(bulk_window, width=60, height=10)
         text_area.pack(padx=5, pady=5)
@@ -679,6 +718,8 @@ class LootGeneratorApp:
                     item.description,
                     item.point_value,
                     ", ".join(item.tags),
+                    item.size,
+                    item.period,
                 ),
             )
 
