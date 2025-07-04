@@ -53,7 +53,7 @@ def select_game_system(root=None) -> str:
             rename_game_system(old, new)
             refresh()
 
-    def choose():
+    def choose(event=None):
         sel = listbox.curselection()
         if not sel:
             messagebox.showerror("Error", "Select a game system.", parent=win)
@@ -64,6 +64,9 @@ def select_game_system(root=None) -> str:
     ttk.Button(win, text="New", command=create).grid(row=1, column=0, padx=5, pady=5)
     ttk.Button(win, text="Rename", command=rename).grid(row=1, column=1, padx=5, pady=5)
     ttk.Button(win, text="Select", command=choose).grid(row=1, column=2, padx=5, pady=5)
+
+    # Allow double clicking on a system to select it
+    listbox.bind("<Double-1>", choose)
 
     for i in range(3):
         win.columnconfigure(i, weight=1)
