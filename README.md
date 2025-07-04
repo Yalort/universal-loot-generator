@@ -69,7 +69,8 @@ material of any listed type may be chosen. Materials are stored in
 Material**, **Bulk Add Materials** and **Delete Material** actions. Optional
 placeholders denoted with `/o` may resolve to an empty string, allowing items
 like `[Metal] [Stone/o] Earring` or `[Wood/Metal/o] Shield` to generate with or
-without the material name.
+without the material name. A suffix can be placed in parentheses to be included
+only when a material is used, e.g. `[Stone/o(-encrusted)]`.
 
 The single **Add Material** dialog accepts a `Name`, numeric `Modifier`, and
 `Type`. `Modifier` is a multiplier applied to an item's point value when the

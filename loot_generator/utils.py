@@ -260,24 +260,24 @@ def resolve_material_placeholders(name: str, value: float, materials: List[Mater
     ``[Wood/Metal/Stone]``. The optional variant (``/o``) may be combined with
     multiple types (e.g. ``[Wood/Metal/o]``) and may be replaced with an empty
     string with 50% probability. ``value`` is modified by each material's
-    ``modifier``.
+    ``modifier``. A suffix can be supplied in parentheses which is appended when
+    a material is chosen, e.g. ``[Stone/o(-encrusted)]``.
     """
-    pattern = re.compile(r"\[([A-Za-z/]+?)(?:(/o))?\]")
+    pattern = re.compile(r"\[([A-Za-z/]+?)(?:(/o))?(?:\(([^\]]+)\))?\]")
     modifiers = 1.0
 
     def repl(match: re.Match) -> str:
         nonlocal modifiers
-        types_str, optional = match.group(1), match.group(2)
-        if optional:
-            if random.random() < 0.5:
-                return ""
+        types_str, optional, suffix = match.group(1), match.group(2), match.group(3)
+        if optional and random.random() < 0.5:
+            return ""
         types = [t.strip() for t in types_str.split("/") if t.strip()]
         options = [m for m in materials if m.type.lower() in {t.lower() for t in types}]
         if not options:
             return ""
         mat = random.choice(options)
         modifiers *= mat.modifier
-        return mat.name
+        return mat.name + (suffix or "")
 
     new_name = pattern.sub(repl, name)
     new_value = round(value * modifiers, 4)
