@@ -1,0 +1,1824 @@
+{
+    "materials": [
+        {
+            "name": "Aluminium",
+            "modifier": 1.0,
+            "type": "Metal"
+        },
+        {
+            "name": "Bismuth",
+            "modifier": 1.47,
+            "type": "Metal"
+        },
+        {
+            "name": "Cadmium",
+            "modifier": 1.65,
+            "type": "Metal"
+        },
+        {
+            "name": "Cerium",
+            "modifier": 1.92,
+            "type": "Metal"
+        },
+        {
+            "name": "Chromium",
+            "modifier": 2.1,
+            "type": "Metal"
+        },
+        {
+            "name": "Cobalt",
+            "modifier": 2.18,
+            "type": "Metal"
+        },
+        {
+            "name": "Copper",
+            "modifier": 1.2,
+            "type": "Metal"
+        },
+        {
+            "name": "Dysprosium",
+            "modifier": 2.65,
+            "type": "Metal"
+        },
+        {
+            "name": "Erbium",
+            "modifier": 2.84,
+            "type": "Metal"
+        },
+        {
+            "name": "Europium",
+            "modifier": 2.94,
+            "type": "Metal"
+        },
+        {
+            "name": "Gadolinium",
+            "modifier": 3.2,
+            "type": "Metal"
+        },
+        {
+            "name": "Gallium",
+            "modifier": 3.31,
+            "type": "Metal"
+        },
+        {
+            "name": "Gold",
+            "modifier": 8.5,
+            "type": "Metal"
+        },
+        {
+            "name": "Hafnium",
+            "modifier": 3.47,
+            "type": "Metal"
+        },
+        {
+            "name": "Holmium",
+            "modifier": 3.67,
+            "type": "Metal"
+        },
+        {
+            "name": "Indium",
+            "modifier": 3.76,
+            "type": "Metal"
+        },
+        {
+            "name": "Iridium",
+            "modifier": 9.0,
+            "type": "Metal"
+        },
+        {
+            "name": "Iron",
+            "modifier": 1.2,
+            "type": "Metal"
+        },
+        {
+            "name": "Lanthanum",
+            "modifier": 4.04,
+            "type": "Metal"
+        },
+        {
+            "name": "Lead",
+            "modifier": 1.4,
+            "type": "Metal"
+        },
+        {
+            "name": "Lutetium",
+            "modifier": 4.39,
+            "type": "Metal"
+        },
+        {
+            "name": "Manganese",
+            "modifier": 4.57,
+            "type": "Metal"
+        },
+        {
+            "name": "Mercury",
+            "modifier": 4.86,
+            "type": "Metal"
+        },
+        {
+            "name": "Molybdenum",
+            "modifier": 4.94,
+            "type": "Metal"
+        },
+        {
+            "name": "Neodymium",
+            "modifier": 5.04,
+            "type": "Metal"
+        },
+        {
+            "name": "Nickel",
+            "modifier": 1.5,
+            "type": "Metal"
+        },
+        {
+            "name": "Niobium",
+            "modifier": 5.33,
+            "type": "Metal"
+        },
+        {
+            "name": "Osmium",
+            "modifier": 8.8,
+            "type": "Metal"
+        },
+        {
+            "name": "Palladium",
+            "modifier": 8.8,
+            "type": "Metal"
+        },
+        {
+            "name": "Platinum",
+            "modifier": 9.0,
+            "type": "Metal"
+        },
+        {
+            "name": "Praseodymium",
+            "modifier": 6.04,
+            "type": "Metal"
+        },
+        {
+            "name": "Rhenium",
+            "modifier": 6.43,
+            "type": "Metal"
+        },
+        {
+            "name": "Rhodium",
+            "modifier": 9.2,
+            "type": "Metal"
+        },
+        {
+            "name": "Roentgenium",
+            "modifier": 6.59,
+            "type": "Metal"
+        },
+        {
+            "name": "Ruthenium",
+            "modifier": 8.7,
+            "type": "Metal"
+        },
+        {
+            "name": "Samarium",
+            "modifier": 6.98,
+            "type": "Metal"
+        },
+        {
+            "name": "Scandium",
+            "modifier": 7.06,
+            "type": "Metal"
+        },
+        {
+            "name": "Silver",
+            "modifier": 7.24,
+            "type": "Metal"
+        },
+        {
+            "name": "Tantalum",
+            "modifier": 7.53,
+            "type": "Metal"
+        },
+        {
+            "name": "Technetium",
+            "modifier": 7.61,
+            "type": "Metal"
+        },
+        {
+            "name": "Terbium",
+            "modifier": 7.71,
+            "type": "Metal"
+        },
+        {
+            "name": "Thallium",
+            "modifier": 7.8,
+            "type": "Metal"
+        },
+        {
+            "name": "Thulium",
+            "modifier": 7.98,
+            "type": "Metal"
+        },
+        {
+            "name": "Tin",
+            "modifier": 1.3,
+            "type": "Metal"
+        },
+        {
+            "name": "Titanium",
+            "modifier": 2.5,
+            "type": "Metal"
+        },
+        {
+            "name": "Tungsten",
+            "modifier": 8.27,
+            "type": "Metal"
+        },
+        {
+            "name": "Ununbium",
+            "modifier": 8.35,
+            "type": "Metal"
+        },
+        {
+            "name": "Ununhexium",
+            "modifier": 8.43,
+            "type": "Metal"
+        },
+        {
+            "name": "Ununpentium",
+            "modifier": 8.53,
+            "type": "Metal"
+        },
+        {
+            "name": "Ununquadium",
+            "modifier": 8.61,
+            "type": "Metal"
+        },
+        {
+            "name": "Ununtrium",
+            "modifier": 8.71,
+            "type": "Metal"
+        },
+        {
+            "name": "Vanadium",
+            "modifier": 8.9,
+            "type": "Metal"
+        },
+        {
+            "name": "Ytterbium",
+            "modifier": 8.98,
+            "type": "Metal"
+        },
+        {
+            "name": "Yttrium",
+            "modifier": 9.08,
+            "type": "Metal"
+        },
+        {
+            "name": "Zinc",
+            "modifier": 1.3,
+            "type": "Metal"
+        },
+        {
+            "name": "Zirconium",
+            "modifier": 9.27,
+            "type": "Metal"
+        },
+        {
+            "name": "Pig iron",
+            "modifier": 1.3,
+            "type": "Metal"
+        },
+        {
+            "name": "Duralumin",
+            "modifier": 1.4,
+            "type": "Metal"
+        },
+        {
+            "name": "Titanium",
+            "modifier": 2.5,
+            "type": "Metal"
+        },
+        {
+            "name": "Stainless steel",
+            "modifier": 1.2,
+            "type": "Metal"
+        },
+        {
+            "name": "Brass",
+            "modifier": 1.5,
+            "type": "Metal"
+        },
+        {
+            "name": "Bronze",
+            "modifier": 1.6,
+            "type": "Metal"
+        },
+        {
+            "name": "Electrum",
+            "modifier": 9.92,
+            "type": "Metal"
+        },
+        {
+            "name": "Steel",
+            "modifier": 1.1,
+            "type": "Metal"
+        },
+        {
+            "name": "Strengite",
+            "modifier": 1.0,
+            "type": "Stone"
+        },
+        {
+            "name": "Stishovite",
+            "modifier": 1.08,
+            "type": "Stone"
+        },
+        {
+            "name": "Jade",
+            "modifier": 1.18,
+            "type": "Stone"
+        },
+        {
+            "name": "Diorite",
+            "modifier": 1.26,
+            "type": "Stone"
+        },
+        {
+            "name": "Tourmaline",
+            "modifier": 1.34,
+            "type": "Stone"
+        },
+        {
+            "name": "Lechatelierite",
+            "modifier": 1.44,
+            "type": "Stone"
+        },
+        {
+            "name": "Caledonite",
+            "modifier": 1.55,
+            "type": "Stone"
+        },
+        {
+            "name": "Plancheite",
+            "modifier": 1.63,
+            "type": "Stone"
+        },
+        {
+            "name": "Chalcopyrite",
+            "modifier": 1.73,
+            "type": "Stone"
+        },
+        {
+            "name": "Forsterite",
+            "modifier": 1.81,
+            "type": "Stone"
+        },
+        {
+            "name": "Nepheline",
+            "modifier": 1.89,
+            "type": "Stone"
+        },
+        {
+            "name": "Chrysoberyl",
+            "modifier": 1.99,
+            "type": "Stone"
+        },
+        {
+            "name": "Bayldonite",
+            "modifier": 2.07,
+            "type": "Stone"
+        },
+        {
+            "name": "Carletonite",
+            "modifier": 2.17,
+            "type": "Stone"
+        },
+        {
+            "name": "Beer stone",
+            "modifier": 2.25,
+            "type": "Stone"
+        },
+        {
+            "name": "Skiddaw slate",
+            "modifier": 2.36,
+            "type": "Stone"
+        },
+        {
+            "name": "Kimberlite",
+            "modifier": 2.46,
+            "type": "Stone"
+        },
+        {
+            "name": "Peridotite",
+            "modifier": 2.54,
+            "type": "Stone"
+        },
+        {
+            "name": "Quartz",
+            "modifier": 2.62,
+            "type": "Stone"
+        },
+        {
+            "name": "Catcastle",
+            "modifier": 2.72,
+            "type": "Stone"
+        },
+        {
+            "name": "Elaeolite",
+            "modifier": 2.8,
+            "type": "Stone"
+        },
+        {
+            "name": "Andalusite",
+            "modifier": 2.9,
+            "type": "Stone"
+        },
+        {
+            "name": "Iddingsite",
+            "modifier": 3.0,
+            "type": "Stone"
+        },
+        {
+            "name": "Wakefieldite",
+            "modifier": 3.08,
+            "type": "Stone"
+        },
+        {
+            "name": "Serendibite",
+            "modifier": 3.16,
+            "type": "Stone"
+        },
+        {
+            "name": "Pyrite",
+            "modifier": 3.27,
+            "type": "Stone"
+        },
+        {
+            "name": "Marmara",
+            "modifier": 3.37,
+            "type": "Stone"
+        },
+        {
+            "name": "Jasper",
+            "modifier": 3.45,
+            "type": "Stone"
+        },
+        {
+            "name": "Syenite",
+            "modifier": 3.53,
+            "type": "Stone"
+        },
+        {
+            "name": "Zinnwaldite",
+            "modifier": 3.63,
+            "type": "Stone"
+        },
+        {
+            "name": "Hibonite",
+            "modifier": 3.73,
+            "type": "Stone"
+        },
+        {
+            "name": "Burdur beige marble",
+            "modifier": 3.81,
+            "type": "Stone"
+        },
+        {
+            "name": "Celestine",
+            "modifier": 3.91,
+            "type": "Stone"
+        },
+        {
+            "name": "Kidney ore",
+            "modifier": 3.99,
+            "type": "Stone"
+        },
+        {
+            "name": "Slate",
+            "modifier": 4.09,
+            "type": "Stone"
+        },
+        {
+            "name": "Hessonite",
+            "modifier": 4.18,
+            "type": "Stone"
+        },
+        {
+            "name": "Spessartite",
+            "modifier": 4.28,
+            "type": "Stone"
+        },
+        {
+            "name": "Portland independent basebed",
+            "modifier": 4.36,
+            "type": "Stone"
+        },
+        {
+            "name": "Dravite",
+            "modifier": 4.44,
+            "type": "Stone"
+        },
+        {
+            "name": "Jeremejevite",
+            "modifier": 4.54,
+            "type": "Stone"
+        },
+        {
+            "name": "Diaspore",
+            "modifier": 4.62,
+            "type": "Stone"
+        },
+        {
+            "name": "Heliodor",
+            "modifier": 4.72,
+            "type": "Stone"
+        },
+        {
+            "name": "Mendipite",
+            "modifier": 4.82,
+            "type": "Stone"
+        },
+        {
+            "name": "Halite",
+            "modifier": 4.9,
+            "type": "Stone"
+        },
+        {
+            "name": "Zincite",
+            "modifier": 4.98,
+            "type": "Stone"
+        },
+        {
+            "name": "Topaz",
+            "modifier": 5.09,
+            "type": "Stone"
+        },
+        {
+            "name": "Actinolite",
+            "modifier": 5.17,
+            "type": "Stone"
+        },
+        {
+            "name": "Clinohumite",
+            "modifier": 5.27,
+            "type": "Stone"
+        },
+        {
+            "name": "Axinite",
+            "modifier": 5.37,
+            "type": "Stone"
+        },
+        {
+            "name": "Afghanite",
+            "modifier": 5.45,
+            "type": "Stone"
+        },
+        {
+            "name": "Hauyne",
+            "modifier": 5.53,
+            "type": "Stone"
+        },
+        {
+            "name": "Bixbite",
+            "modifier": 5.63,
+            "type": "Stone"
+        },
+        {
+            "name": "Ceylonite",
+            "modifier": 5.73,
+            "type": "Stone"
+        },
+        {
+            "name": "Brookite",
+            "modifier": 5.81,
+            "type": "Stone"
+        },
+        {
+            "name": "Fluorapophyllite",
+            "modifier": 5.91,
+            "type": "Stone"
+        },
+        {
+            "name": "Bearl",
+            "modifier": 6.0,
+            "type": "Stone"
+        },
+        {
+            "name": "Anorthosite",
+            "modifier": 6.08,
+            "type": "Stone"
+        },
+        {
+            "name": "Chalk",
+            "modifier": 6.18,
+            "type": "Stone"
+        },
+        {
+            "name": "Nacre",
+            "modifier": 6.26,
+            "type": "Stone"
+        },
+        {
+            "name": "Goethite",
+            "modifier": 6.36,
+            "type": "Stone"
+        },
+        {
+            "name": "Larvikite",
+            "modifier": 6.46,
+            "type": "Stone"
+        },
+        {
+            "name": "Rubellite",
+            "modifier": 6.54,
+            "type": "Stone"
+        },
+        {
+            "name": "Dunhouse buff",
+            "modifier": 6.62,
+            "type": "Stone"
+        },
+        {
+            "name": "Chrysocolla",
+            "modifier": 6.72,
+            "type": "Stone"
+        },
+        {
+            "name": "Sandstone",
+            "modifier": 6.82,
+            "type": "Stone"
+        },
+        {
+            "name": "Anglesite",
+            "modifier": 6.91,
+            "type": "Stone"
+        },
+        {
+            "name": "Vesuvianite",
+            "modifier": 7.01,
+            "type": "Stone"
+        },
+        {
+            "name": "Haslingden flag",
+            "modifier": 7.09,
+            "type": "Stone"
+        },
+        {
+            "name": "Anyolite",
+            "modifier": 7.17,
+            "type": "Stone"
+        },
+        {
+            "name": "Goshenite",
+            "modifier": 7.27,
+            "type": "Stone"
+        },
+        {
+            "name": "Noche travertine",
+            "modifier": 7.35,
+            "type": "Stone"
+        },
+        {
+            "name": "Grossular",
+            "modifier": 7.45,
+            "type": "Stone"
+        },
+        {
+            "name": "Vermiculite",
+            "modifier": 7.55,
+            "type": "Stone"
+        },
+        {
+            "name": "Botallackite",
+            "modifier": 7.63,
+            "type": "Stone"
+        },
+        {
+            "name": "Lammerite",
+            "modifier": 7.73,
+            "type": "Stone"
+        },
+        {
+            "name": "Olenite",
+            "modifier": 7.82,
+            "type": "Stone"
+        },
+        {
+            "name": "Yttrium aluminium garnet",
+            "modifier": 7.9,
+            "type": "Stone"
+        },
+        {
+            "name": "Susannite",
+            "modifier": 8.0,
+            "type": "Stone"
+        },
+        {
+            "name": "Carnallite",
+            "modifier": 8.08,
+            "type": "Stone"
+        },
+        {
+            "name": "Milky quartz",
+            "modifier": 8.18,
+            "type": "Stone"
+        },
+        {
+            "name": "Tyrolite",
+            "modifier": 8.28,
+            "type": "Stone"
+        },
+        {
+            "name": "Bone",
+            "modifier": 8.36,
+            "type": "Stone"
+        },
+        {
+            "name": "Pectolite",
+            "modifier": 8.44,
+            "type": "Stone"
+        },
+        {
+            "name": "Thulite",
+            "modifier": 8.54,
+            "type": "Stone"
+        },
+        {
+            "name": "Pharmacosiderite",
+            "modifier": 8.62,
+            "type": "Stone"
+        },
+        {
+            "name": "Blue amber",
+            "modifier": 8.73,
+            "type": "Stone"
+        },
+        {
+            "name": "Steatite",
+            "modifier": 8.83,
+            "type": "Stone"
+        },
+        {
+            "name": "Portoro buono",
+            "modifier": 8.91,
+            "type": "Stone"
+        },
+        {
+            "name": "Kyanite",
+            "modifier": 8.99,
+            "type": "Stone"
+        },
+        {
+            "name": "Ferroaxinite",
+            "modifier": 9.09,
+            "type": "Stone"
+        },
+        {
+            "name": "Dioptase",
+            "modifier": 9.17,
+            "type": "Stone"
+        },
+        {
+            "name": "Kainite",
+            "modifier": 9.27,
+            "type": "Stone"
+        },
+        {
+            "name": "Clipsham stone",
+            "modifier": 9.37,
+            "type": "Stone"
+        },
+        {
+            "name": "Sphene",
+            "modifier": 9.45,
+            "type": "Stone"
+        },
+        {
+            "name": "Andradite",
+            "modifier": 9.53,
+            "type": "Stone"
+        },
+        {
+            "name": "Antigorite",
+            "modifier": 9.64,
+            "type": "Stone"
+        },
+        {
+            "name": "Trinitite",
+            "modifier": 9.74,
+            "type": "Stone"
+        },
+        {
+            "name": "Forest marble",
+            "modifier": 9.82,
+            "type": "Stone"
+        },
+        {
+            "name": "Talc",
+            "modifier": 9.92,
+            "type": "Stone"
+        },
+        {
+            "name": "D\u0119bnik",
+            "modifier": 10.0,
+            "type": "Stone"
+        },
+        {
+            "name": "Alder",
+            "modifier": 1.0,
+            "type": "Wood"
+        },
+        {
+            "name": "Black alder",
+            "modifier": 1.08,
+            "type": "Wood"
+        },
+        {
+            "name": "Common alder",
+            "modifier": 1.18,
+            "type": "Wood"
+        },
+        {
+            "name": "False alder",
+            "modifier": 1.26,
+            "type": "Wood"
+        },
+        {
+            "name": "Gray alder",
+            "modifier": 1.34,
+            "type": "Wood"
+        },
+        {
+            "name": "Speckled alder",
+            "modifier": 1.44,
+            "type": "Wood"
+        },
+        {
+            "name": "Striped alder",
+            "modifier": 1.55,
+            "type": "Wood"
+        },
+        {
+            "name": "White alder",
+            "modifier": 1.63,
+            "type": "Wood"
+        },
+        {
+            "name": "Almond",
+            "modifier": 1.73,
+            "type": "Wood"
+        },
+        {
+            "name": "Tall ambrosia",
+            "modifier": 1.81,
+            "type": "Wood"
+        },
+        {
+            "name": "Amy root",
+            "modifier": 1.89,
+            "type": "Wood"
+        },
+        {
+            "name": "Apple",
+            "modifier": 1.99,
+            "type": "Wood"
+        },
+        {
+            "name": "Apple",
+            "modifier": 2.07,
+            "type": "Wood"
+        },
+        {
+            "name": "Apple of sodom",
+            "modifier": 2.17,
+            "type": "Wood"
+        },
+        {
+            "name": "Apricot",
+            "modifier": 2.25,
+            "type": "Wood"
+        },
+        {
+            "name": "Arfaj",
+            "modifier": 2.36,
+            "type": "Wood"
+        },
+        {
+            "name": "Arizona sycamore",
+            "modifier": 2.46,
+            "type": "Wood"
+        },
+        {
+            "name": "Arrowwood",
+            "modifier": 2.54,
+            "type": "Wood"
+        },
+        {
+            "name": "Indian arrowwood",
+            "modifier": 2.62,
+            "type": "Wood"
+        },
+        {
+            "name": "Ash",
+            "modifier": 2.72,
+            "type": "Wood"
+        },
+        {
+            "name": "Black ash",
+            "modifier": 2.8,
+            "type": "Wood"
+        },
+        {
+            "name": "Blue ash",
+            "modifier": 2.9,
+            "type": "Wood"
+        },
+        {
+            "name": "Cane ash",
+            "modifier": 3.0,
+            "type": "Wood"
+        },
+        {
+            "name": "Green ash",
+            "modifier": 3.08,
+            "type": "Wood"
+        },
+        {
+            "name": "Maple ash",
+            "modifier": 3.16,
+            "type": "Wood"
+        },
+        {
+            "name": "Red ash",
+            "modifier": 3.27,
+            "type": "Wood"
+        },
+        {
+            "name": "River ash",
+            "modifier": 3.37,
+            "type": "Wood"
+        },
+        {
+            "name": "Swamp ash",
+            "modifier": 3.45,
+            "type": "Wood"
+        },
+        {
+            "name": "White ash",
+            "modifier": 3.53,
+            "type": "Wood"
+        },
+        {
+            "name": "Water ash",
+            "modifier": 3.63,
+            "type": "Wood"
+        },
+        {
+            "name": "Azolla",
+            "modifier": 3.73,
+            "type": "Wood"
+        },
+        {
+            "name": "Carolina azolla",
+            "modifier": 3.81,
+            "type": "Wood"
+        },
+        {
+            "name": "Bamboo",
+            "modifier": 3.91,
+            "type": "Wood"
+        },
+        {
+            "name": "Banana",
+            "modifier": 3.99,
+            "type": "Wood"
+        },
+        {
+            "name": "Baobab",
+            "modifier": 4.09,
+            "type": "Wood"
+        },
+        {
+            "name": "Bay",
+            "modifier": 4.18,
+            "type": "Wood"
+        },
+        {
+            "name": "Bay laurel",
+            "modifier": 4.28,
+            "type": "Wood"
+        },
+        {
+            "name": "California bay",
+            "modifier": 4.36,
+            "type": "Wood"
+        },
+        {
+            "name": "Bean",
+            "modifier": 4.44,
+            "type": "Wood"
+        },
+        {
+            "name": "Bearberry",
+            "modifier": 4.54,
+            "type": "Wood"
+        },
+        {
+            "name": "Bear corn",
+            "modifier": 4.62,
+            "type": "Wood"
+        },
+        {
+            "name": "Beech",
+            "modifier": 4.72,
+            "type": "Wood"
+        },
+        {
+            "name": "Blue bindweed",
+            "modifier": 4.82,
+            "type": "Wood"
+        },
+        {
+            "name": "Bird's nest",
+            "modifier": 4.9,
+            "type": "Wood"
+        },
+        {
+            "name": "Bird's nest plant",
+            "modifier": 4.98,
+            "type": "Wood"
+        },
+        {
+            "name": "Birch",
+            "modifier": 5.09,
+            "type": "Wood"
+        },
+        {
+            "name": "Black birch",
+            "modifier": 5.17,
+            "type": "Wood"
+        },
+        {
+            "name": "Bolean birch",
+            "modifier": 5.27,
+            "type": "Wood"
+        },
+        {
+            "name": "Canoe birch",
+            "modifier": 5.37,
+            "type": "Wood"
+        },
+        {
+            "name": "Cherry birch",
+            "modifier": 5.45,
+            "type": "Wood"
+        },
+        {
+            "name": "European weeping birch",
+            "modifier": 5.53,
+            "type": "Wood"
+        },
+        {
+            "name": "European white birch",
+            "modifier": 5.63,
+            "type": "Wood"
+        },
+        {
+            "name": "Gray birch",
+            "modifier": 5.73,
+            "type": "Wood"
+        },
+        {
+            "name": "Mahogany birch",
+            "modifier": 5.81,
+            "type": "Wood"
+        },
+        {
+            "name": "Paper birch",
+            "modifier": 5.91,
+            "type": "Wood"
+        },
+        {
+            "name": "Red birch",
+            "modifier": 6.0,
+            "type": "Wood"
+        },
+        {
+            "name": "River birch",
+            "modifier": 6.08,
+            "type": "Wood"
+        },
+        {
+            "name": "Silver birch",
+            "modifier": 6.18,
+            "type": "Wood"
+        },
+        {
+            "name": "Spice birch",
+            "modifier": 6.26,
+            "type": "Wood"
+        },
+        {
+            "name": "Sweet birch",
+            "modifier": 6.36,
+            "type": "Wood"
+        },
+        {
+            "name": "Water birch",
+            "modifier": 6.46,
+            "type": "Wood"
+        },
+        {
+            "name": "Weeping birch",
+            "modifier": 6.54,
+            "type": "Wood"
+        },
+        {
+            "name": "White birch",
+            "modifier": 6.62,
+            "type": "Wood"
+        },
+        {
+            "name": "Yellow birch",
+            "modifier": 6.72,
+            "type": "Wood"
+        },
+        {
+            "name": "Bittercress",
+            "modifier": 6.82,
+            "type": "Wood"
+        },
+        {
+            "name": "Hairy bittercress",
+            "modifier": 6.91,
+            "type": "Wood"
+        },
+        {
+            "name": "Bittersweet",
+            "modifier": 7.01,
+            "type": "Wood"
+        },
+        {
+            "name": "Trailing bittersweet",
+            "modifier": 7.09,
+            "type": "Wood"
+        },
+        {
+            "name": "Bitterweed",
+            "modifier": 7.17,
+            "type": "Wood"
+        },
+        {
+            "name": "Blackberry",
+            "modifier": 7.27,
+            "type": "Wood"
+        },
+        {
+            "name": "Hispid swamp blackberry",
+            "modifier": 7.35,
+            "type": "Wood"
+        },
+        {
+            "name": "Pennsylvania blackberry",
+            "modifier": 7.45,
+            "type": "Wood"
+        },
+        {
+            "name": "Running swamp blackberry",
+            "modifier": 7.55,
+            "type": "Wood"
+        },
+        {
+            "name": "Black cap",
+            "modifier": 7.63,
+            "type": "Wood"
+        },
+        {
+            "name": "Black-eyed susan",
+            "modifier": 7.73,
+            "type": "Wood"
+        },
+        {
+            "name": "Blackhaw",
+            "modifier": 7.82,
+            "type": "Wood"
+        },
+        {
+            "name": "Blackiehead",
+            "modifier": 7.9,
+            "type": "Wood"
+        },
+        {
+            "name": "Black-weed",
+            "modifier": 8.0,
+            "type": "Wood"
+        },
+        {
+            "name": "Blueberry",
+            "modifier": 8.08,
+            "type": "Wood"
+        },
+        {
+            "name": "Blue-of-the-heavens",
+            "modifier": 8.18,
+            "type": "Wood"
+        },
+        {
+            "name": "Bow-wood",
+            "modifier": 8.28,
+            "type": "Wood"
+        },
+        {
+            "name": "Box",
+            "modifier": 8.36,
+            "type": "Wood"
+        },
+        {
+            "name": "False box",
+            "modifier": 8.44,
+            "type": "Wood"
+        },
+        {
+            "name": "Boxelder",
+            "modifier": 8.54,
+            "type": "Wood"
+        },
+        {
+            "name": "Boxwood",
+            "modifier": 8.62,
+            "type": "Wood"
+        },
+        {
+            "name": "False boxwood",
+            "modifier": 8.73,
+            "type": "Wood"
+        },
+        {
+            "name": "Sand brier",
+            "modifier": 8.83,
+            "type": "Wood"
+        },
+        {
+            "name": "Brittlebush",
+            "modifier": 8.91,
+            "type": "Wood"
+        },
+        {
+            "name": "Broadleaf",
+            "modifier": 8.99,
+            "type": "Wood"
+        },
+        {
+            "name": "Brown betty",
+            "modifier": 9.09,
+            "type": "Wood"
+        },
+        {
+            "name": "Brown-eyed susan",
+            "modifier": 9.17,
+            "type": "Wood"
+        },
+        {
+            "name": "Buckeye (california buckeye)",
+            "modifier": 9.27,
+            "type": "Wood"
+        },
+        {
+            "name": "Buckeye",
+            "modifier": 9.37,
+            "type": "Wood"
+        },
+        {
+            "name": "Buffalo weed",
+            "modifier": 9.45,
+            "type": "Wood"
+        },
+        {
+            "name": "Butterfly flower",
+            "modifier": 9.53,
+            "type": "Wood"
+        },
+        {
+            "name": "Butterfly weed",
+            "modifier": 9.64,
+            "type": "Wood"
+        },
+        {
+            "name": "Cabbage",
+            "modifier": 9.74,
+            "type": "Wood"
+        },
+        {
+            "name": "Clumpfoot cabbage",
+            "modifier": 9.82,
+            "type": "Wood"
+        },
+        {
+            "name": "Meadow cabbage",
+            "modifier": 9.92,
+            "type": "Wood"
+        },
+        {
+            "name": "Skunk cabbage",
+            "modifier": 10.0,
+            "type": "Wood"
+        },
+        {
+            "name": "Acrylic",
+            "modifier": 1.0,
+            "type": "Fabric"
+        },
+        {
+            "name": "Aertex",
+            "modifier": 1.08,
+            "type": "Fabric"
+        },
+        {
+            "name": "Airdura",
+            "modifier": 1.18,
+            "type": "Fabric"
+        },
+        {
+            "name": "Airguard",
+            "modifier": 1.26,
+            "type": "Fabric"
+        },
+        {
+            "name": "Alpaca",
+            "modifier": 1.34,
+            "type": "Fabric"
+        },
+        {
+            "name": "Angora",
+            "modifier": 1.44,
+            "type": "Fabric"
+        },
+        {
+            "name": "Argyle",
+            "modifier": 1.55,
+            "type": "Fabric"
+        },
+        {
+            "name": "Baize",
+            "modifier": 1.63,
+            "type": "Fabric"
+        },
+        {
+            "name": "Ballistic nylon",
+            "modifier": 1.73,
+            "type": "Fabric"
+        },
+        {
+            "name": "Ban-lon",
+            "modifier": 1.81,
+            "type": "Fabric"
+        },
+        {
+            "name": "Barathea",
+            "modifier": 1.89,
+            "type": "Fabric"
+        },
+        {
+            "name": "Barkcloth",
+            "modifier": 1.99,
+            "type": "Fabric"
+        },
+        {
+            "name": "Batiste",
+            "modifier": 2.07,
+            "type": "Fabric"
+        },
+        {
+            "name": "Bedford cord",
+            "modifier": 2.17,
+            "type": "Fabric"
+        },
+        {
+            "name": "Bengaline silk",
+            "modifier": 2.25,
+            "type": "Fabric"
+        },
+        {
+            "name": "Beta cloth",
+            "modifier": 2.36,
+            "type": "Fabric"
+        },
+        {
+            "name": "Bizarre silk",
+            "modifier": 2.46,
+            "type": "Fabric"
+        },
+        {
+            "name": "Bobbinet",
+            "modifier": 2.54,
+            "type": "Fabric"
+        },
+        {
+            "name": "Boiled wool",
+            "modifier": 2.62,
+            "type": "Fabric"
+        },
+        {
+            "name": "Bombazine",
+            "modifier": 2.72,
+            "type": "Fabric"
+        },
+        {
+            "name": "Brilliantine",
+            "modifier": 2.8,
+            "type": "Fabric"
+        },
+        {
+            "name": "Broadcloth",
+            "modifier": 2.9,
+            "type": "Fabric"
+        },
+        {
+            "name": "Brocade",
+            "modifier": 3.0,
+            "type": "Fabric"
+        },
+        {
+            "name": "Buckram",
+            "modifier": 3.08,
+            "type": "Fabric"
+        },
+        {
+            "name": "Bunting",
+            "modifier": 3.16,
+            "type": "Fabric"
+        },
+        {
+            "name": "Burlap",
+            "modifier": 3.27,
+            "type": "Fabric"
+        },
+        {
+            "name": "C change",
+            "modifier": 3.37,
+            "type": "Fabric"
+        },
+        {
+            "name": "Calico",
+            "modifier": 3.45,
+            "type": "Fabric"
+        },
+        {
+            "name": "Cambric",
+            "modifier": 3.53,
+            "type": "Fabric"
+        },
+        {
+            "name": "Camlet",
+            "modifier": 3.63,
+            "type": "Fabric"
+        },
+        {
+            "name": "Canvas",
+            "modifier": 3.73,
+            "type": "Fabric"
+        },
+        {
+            "name": "Capilene",
+            "modifier": 3.81,
+            "type": "Fabric"
+        },
+        {
+            "name": "Carbon fiber",
+            "modifier": 3.91,
+            "type": "Fabric"
+        },
+        {
+            "name": "Cashmere",
+            "modifier": 3.99,
+            "type": "Fabric"
+        },
+        {
+            "name": "Cedar bark",
+            "modifier": 4.09,
+            "type": "Fabric"
+        },
+        {
+            "name": "Challis",
+            "modifier": 4.18,
+            "type": "Fabric"
+        },
+        {
+            "name": "Chambray",
+            "modifier": 4.28,
+            "type": "Fabric"
+        },
+        {
+            "name": "Char cloth",
+            "modifier": 4.36,
+            "type": "Fabric"
+        },
+        {
+            "name": "Charmeuse",
+            "modifier": 4.44,
+            "type": "Fabric"
+        },
+        {
+            "name": "Charvet",
+            "modifier": 4.54,
+            "type": "Fabric"
+        },
+        {
+            "name": "Cheesecloth",
+            "modifier": 4.62,
+            "type": "Fabric"
+        },
+        {
+            "name": "Chenille",
+            "modifier": 4.72,
+            "type": "Fabric"
+        },
+        {
+            "name": "Chiffon",
+            "modifier": 4.82,
+            "type": "Fabric"
+        },
+        {
+            "name": "Chin\u00e9",
+            "modifier": 4.9,
+            "type": "Fabric"
+        },
+        {
+            "name": "Chino",
+            "modifier": 4.98,
+            "type": "Fabric"
+        },
+        {
+            "name": "Chintz",
+            "modifier": 5.09,
+            "type": "Fabric"
+        },
+        {
+            "name": "Cloqu\u00e9",
+            "modifier": 5.17,
+            "type": "Fabric"
+        },
+        {
+            "name": "Cloth of gold",
+            "modifier": 5.27,
+            "type": "Fabric"
+        },
+        {
+            "name": "Coir",
+            "modifier": 5.37,
+            "type": "Fabric"
+        },
+        {
+            "name": "Conductive",
+            "modifier": 5.45,
+            "type": "Fabric"
+        },
+        {
+            "name": "Coolmax",
+            "modifier": 5.53,
+            "type": "Fabric"
+        },
+        {
+            "name": "Cordura",
+            "modifier": 5.63,
+            "type": "Fabric"
+        },
+        {
+            "name": "Corduroy",
+            "modifier": 5.73,
+            "type": "Fabric"
+        },
+        {
+            "name": "Cotton",
+            "modifier": 5.81,
+            "type": "Fabric"
+        },
+        {
+            "name": "Coutil",
+            "modifier": 5.91,
+            "type": "Fabric"
+        },
+        {
+            "name": "Crape",
+            "modifier": 6.0,
+            "type": "Fabric"
+        },
+        {
+            "name": "Cr\u00eape",
+            "modifier": 6.08,
+            "type": "Fabric"
+        },
+        {
+            "name": "Cretonne",
+            "modifier": 6.18,
+            "type": "Fabric"
+        },
+        {
+            "name": "Crimplene",
+            "modifier": 6.26,
+            "type": "Fabric"
+        },
+        {
+            "name": "Damask",
+            "modifier": 6.36,
+            "type": "Fabric"
+        },
+        {
+            "name": "Darlexx",
+            "modifier": 6.46,
+            "type": "Fabric"
+        },
+        {
+            "name": "Dazzle",
+            "modifier": 6.54,
+            "type": "Fabric"
+        },
+        {
+            "name": "Denim",
+            "modifier": 6.62,
+            "type": "Fabric"
+        },
+        {
+            "name": "Dimity",
+            "modifier": 6.72,
+            "type": "Fabric"
+        },
+        {
+            "name": "Donegal tweed",
+            "modifier": 6.82,
+            "type": "Fabric"
+        },
+        {
+            "name": "Dornix",
+            "modifier": 6.91,
+            "type": "Fabric"
+        },
+        {
+            "name": "Dowlas",
+            "modifier": 7.01,
+            "type": "Fabric"
+        },
+        {
+            "name": "Drill",
+            "modifier": 7.09,
+            "type": "Fabric"
+        },
+        {
+            "name": "Drugget",
+            "modifier": 7.17,
+            "type": "Fabric"
+        },
+        {
+            "name": "Duck",
+            "modifier": 7.27,
+            "type": "Fabric"
+        },
+        {
+            "name": "E-textiles",
+            "modifier": 7.35,
+            "type": "Fabric"
+        },
+        {
+            "name": "Eolienne",
+            "modifier": 7.45,
+            "type": "Fabric"
+        },
+        {
+            "name": "Felt",
+            "modifier": 7.55,
+            "type": "Fabric"
+        },
+        {
+            "name": "Fishnet",
+            "modifier": 7.63,
+            "type": "Fabric"
+        },
+        {
+            "name": "Flannel",
+            "modifier": 7.73,
+            "type": "Fabric"
+        },
+        {
+            "name": "Foulard",
+            "modifier": 7.82,
+            "type": "Fabric"
+        },
+        {
+            "name": "Fustian",
+            "modifier": 7.9,
+            "type": "Fabric"
+        },
+        {
+            "name": "Gabardine",
+            "modifier": 8.0,
+            "type": "Fabric"
+        },
+        {
+            "name": "Gannex",
+            "modifier": 8.08,
+            "type": "Fabric"
+        },
+        {
+            "name": "Gauze",
+            "modifier": 8.18,
+            "type": "Fabric"
+        },
+        {
+            "name": "Gazar",
+            "modifier": 8.28,
+            "type": "Fabric"
+        },
+        {
+            "name": "Georgette",
+            "modifier": 8.36,
+            "type": "Fabric"
+        },
+        {
+            "name": "Ghalamkar",
+            "modifier": 8.44,
+            "type": "Fabric"
+        },
+        {
+            "name": "Gingham",
+            "modifier": 8.54,
+            "type": "Fabric"
+        },
+        {
+            "name": "Gore-tex",
+            "modifier": 8.62,
+            "type": "Fabric"
+        },
+        {
+            "name": "Grenadine",
+            "modifier": 8.73,
+            "type": "Fabric"
+        },
+        {
+            "name": "Grenfell cloth",
+            "modifier": 8.83,
+            "type": "Fabric"
+        },
+        {
+            "name": "Grosgrain",
+            "modifier": 8.91,
+            "type": "Fabric"
+        },
+        {
+            "name": "Habutai",
+            "modifier": 8.99,
+            "type": "Fabric"
+        },
+        {
+            "name": "Haircloth",
+            "modifier": 9.09,
+            "type": "Fabric"
+        },
+        {
+            "name": "Harris tweed",
+            "modifier": 9.17,
+            "type": "Fabric"
+        },
+        {
+            "name": "Hemp",
+            "modifier": 9.27,
+            "type": "Fabric"
+        },
+        {
+            "name": "Herringbone",
+            "modifier": 9.37,
+            "type": "Fabric"
+        },
+        {
+            "name": "Himroo",
+            "modifier": 9.45,
+            "type": "Fabric"
+        },
+        {
+            "name": "Hodden",
+            "modifier": 9.53,
+            "type": "Fabric"
+        },
+        {
+            "name": "Houndstooth",
+            "modifier": 9.64,
+            "type": "Fabric"
+        },
+        {
+            "name": "Irish linen",
+            "modifier": 9.74,
+            "type": "Fabric"
+        },
+        {
+            "name": "Jamdani",
+            "modifier": 9.82,
+            "type": "Fabric"
+        },
+        {
+            "name": "Jersey",
+            "modifier": 9.92,
+            "type": "Fabric"
+        },
+        {
+            "name": "Jute",
+            "modifier": 10.0,
+            "type": "Fabric"
+        }
+    ]
+}
