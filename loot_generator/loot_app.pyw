@@ -404,7 +404,14 @@ class LootGeneratorApp:
 
         for idx, field in enumerate(fields):
             ttk.Label(add_window, text=field).grid(row=idx, column=0, sticky=tk.W, pady=2)
-            entry = ttk.Entry(add_window, width=40)
+            if "Size" in field:
+                entry = ttk.Combobox(add_window, values=SIZES, state="readonly", width=37)
+                entry.set("midsize")
+            elif "Period" in field:
+                entry = ttk.Combobox(add_window, values=PERIODS, state="readonly", width=37)
+                entry.set("modern")
+            else:
+                entry = ttk.Entry(add_window, width=40)
             entry.grid(row=idx, column=1, pady=2)
             entries[field] = entry
 
