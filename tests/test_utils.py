@@ -110,7 +110,7 @@ def test_generate_loot_invalid_point_values_raise():
 
 
 def test_parse_items_text_valid():
-    text = "Sword|1|Sharp blade|10|weapon,melee"
+    text = "Sword|1|Sharp blade|10|weapon,melee|midsize|modern"
     items = utils.parse_items_text(text)
     assert len(items) == 1
     item = items[0]
@@ -125,6 +125,12 @@ def test_parse_items_text_invalid():
     text = "Bad|data"
     with pytest.raises(ValueError):
         utils.parse_items_text(text)
+
+
+def test_parse_items_text_decimal_value():
+    text = "Gem|1|Shiny|0.5|misc|small|modern"
+    items = utils.parse_items_text(text)
+    assert items[0].point_value == 0.5
 
 
 def test_resolve_material_placeholders_required():
@@ -189,3 +195,27 @@ def test_parse_materials_text_invalid():
     text = "Bad|data"
     with pytest.raises(ValueError):
         utils.parse_materials_text(text)
+
+
+def test_resolve_material_placeholders_suffix_required():
+    materials = [utils.Material("Gold", 1.0, "Metal")]
+    random.seed(0)
+    name, value = utils.resolve_material_placeholders("[Metal(-inlayed)] Ring", 5, materials)
+    assert name == "Gold-inlayed Ring"
+    assert value == 5
+
+
+def test_resolve_material_placeholders_optional_suffix_present():
+    materials = [utils.Material("Diamond", 1.5, "Stone")]
+    random.seed(0)
+    name, value = utils.resolve_material_placeholders("[Stone/o(-encrusted)] Ring", 10, materials)
+    assert name == "Diamond-encrusted Ring"
+    assert value == 15
+
+
+def test_resolve_material_placeholders_optional_suffix_absent():
+    materials = [utils.Material("Diamond", 1.5, "Stone")]
+    random.seed(1)
+    name, value = utils.resolve_material_placeholders("[Stone/o(-encrusted)] Ring", 10, materials)
+    assert name == "Ring"
+    assert value == 10

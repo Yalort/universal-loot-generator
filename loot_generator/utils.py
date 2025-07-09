@@ -6,13 +6,19 @@ import shutil
 from dataclasses import dataclass
 from typing import List, Optional
 
+# Supported sizes and time periods in increasing order
+SIZES = ["tiny", "small", "midsize", "large", "huge"]
+PERIODS = ["tribal", "medieval", "modern", "postmodern", "spacer"]
+
 @dataclass
 class LootItem:
     name: str
     rarity: int
     description: str
-    point_value: int
+    point_value: float
     tags: List[str]
+    size: str = "midsize"
+    period: str = "modern"
 
 
 @dataclass
@@ -126,7 +132,21 @@ def load_loot_items(filepath: Optional[str] = None):
     else:
         items_data = data
 
-    return [LootItem(**item) for item in items_data]
+    loaded_items = []
+    for item in items_data:
+        loaded_items.append(
+            LootItem(
+                item.get("name"),
+                item.get("rarity"),
+                item.get("description", ""),
+                float(item.get("point_value")),
+                item.get("tags", []),
+                item.get("size", "midsize"),
+                item.get("period", "modern"),
+            )
+        )
+
+    return loaded_items
 
 def load_all_tags(filepath: Optional[str] = None):
     """Return the list of all tags stored in ``loot_items.json``.
@@ -169,8 +189,11 @@ def generate_loot(
     exclude_tags: Optional[List[str]] = None,
     min_rarity: Optional[int] = None,
     max_rarity: Optional[int] = None,
+    max_size: Optional[str] = None,
+    periods: Optional[List[str]] = None,
     materials: Optional[List[Material]] = None,
 ):
+    """Generate a list of ``LootItem`` objects matching the given filters."""
     if points <= 0:
         raise ValueError("points must be positive")
     filtered_items = [
@@ -180,6 +203,11 @@ def generate_loot(
         and (not exclude_tags or not set(exclude_tags).intersection(item.tags))
         and (min_rarity is None or item.rarity >= min_rarity)
         and (max_rarity is None or item.rarity <= max_rarity)
+        and (
+            max_size is None
+            or SIZES.index(item.size) <= SIZES.index(max_size)
+        )
+        and (periods is None or item.period in periods)
     ]
 
     # Validate rarities and skip items with non-positive values
@@ -203,7 +231,7 @@ def generate_loot(
             )
 
     loot = []
-    total_points = 0
+    total_points = 0.0
 
     if not filtered_items:
         return loot
@@ -217,14 +245,14 @@ def generate_loot(
         item = random.choices(available_items, weights=weights, k=1)[0]
         if materials:
             name, value = resolve_material_placeholders(item.name, item.point_value, materials)
-            item = LootItem(name, item.rarity, item.description, value, item.tags)
+            item = LootItem(name, item.rarity, item.description, value, item.tags, item.size, item.period)
         loot.append(item)
         total_points += item.point_value
 
     return loot
 
 
-def resolve_material_placeholders(name: str, value: int, materials: List[Material]) -> (str, int):
+def resolve_material_placeholders(name: str, value: float, materials: List[Material]) -> (str, float):
     """Replace material placeholders in ``name`` using provided materials.
 
     Placeholders are of the form ``[Metal]`` or ``[Metal/o]``. Multiple material
@@ -232,35 +260,35 @@ def resolve_material_placeholders(name: str, value: int, materials: List[Materia
     ``[Wood/Metal/Stone]``. The optional variant (``/o``) may be combined with
     multiple types (e.g. ``[Wood/Metal/o]``) and may be replaced with an empty
     string with 50% probability. ``value`` is modified by each material's
-    ``modifier``.
+    ``modifier``. A suffix can be supplied in parentheses which is appended when
+    a material is chosen, e.g. ``[Stone/o(-encrusted)]``.
     """
-    pattern = re.compile(r"\[([A-Za-z/]+?)(?:(/o))?\]")
+    pattern = re.compile(r"\[([A-Za-z/]+?)(?:(/o))?(?:\(([^\]]+)\))?\]")
     modifiers = 1.0
 
     def repl(match: re.Match) -> str:
         nonlocal modifiers
-        types_str, optional = match.group(1), match.group(2)
-        if optional:
-            if random.random() < 0.5:
-                return ""
+        types_str, optional, suffix = match.group(1), match.group(2), match.group(3)
+        if optional and random.random() < 0.5:
+            return ""
         types = [t.strip() for t in types_str.split("/") if t.strip()]
         options = [m for m in materials if m.type.lower() in {t.lower() for t in types}]
         if not options:
             return ""
         mat = random.choice(options)
         modifiers *= mat.modifier
-        return mat.name
+        return mat.name + (suffix or "")
 
     new_name = pattern.sub(repl, name)
-    new_value = int(round(value * modifiers))
+    new_value = round(value * modifiers, 4)
     return new_name.strip(), new_value
 
 
 def parse_items_text(text: str) -> List[LootItem]:
     """Parse a bulk text string into ``LootItem`` objects.
 
-    Each non-empty line should contain five ``|`` separated fields in the
-    order ``name|rarity|description|point_value|tag1,tag2``. Tags are
+    Each non-empty line should contain seven ``|`` separated fields in the
+    order ``name|rarity|description|point_value|tag1,tag2|size|period``. Tags are
     comma-separated. Whitespace around fields is ignored.
     """
 
@@ -269,13 +297,15 @@ def parse_items_text(text: str) -> List[LootItem]:
         if not line.strip():
             continue
         parts = [p.strip() for p in line.split("|")]
-        if len(parts) != 5:
-            raise ValueError("Each line must contain five '|' separated fields")
-        name, rarity_str, description, value_str, tags_str = parts
+        if len(parts) != 7:
+            raise ValueError("Each line must contain seven '|' separated fields")
+        name, rarity_str, description, value_str, tags_str, size, period = parts
         rarity = int(rarity_str)
-        point_value = int(value_str)
+        point_value = float(value_str)
+        if point_value < 0.0001:
+            raise ValueError("point_value must be at least 0.0001")
         tags = [t.strip() for t in tags_str.split(",") if t.strip()]
-        items.append(LootItem(name, rarity, description, point_value, tags))
+        items.append(LootItem(name, rarity, description, point_value, tags, size, period))
 
     return items
 
