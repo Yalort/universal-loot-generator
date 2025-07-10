@@ -562,11 +562,10 @@ class LootGeneratorApp:
                 return
             name = listbox.get(sel[0])
             item = next((i for i in self.loot_items if i.name == name), None)
-            if item and messagebox.askyesno("Confirm Delete", f"Delete '{name}'?"):
+            if item:
                 self.loot_items.remove(item)
                 self.update_loot_file()
                 self.populate_items_tree()
-                messagebox.showinfo("Deleted", f"Item '{name}' deleted.")
                 win.destroy()
 
         ttk.Button(win, text="Delete Item", command=confirm_delete).pack(pady=5)
@@ -578,11 +577,10 @@ class LootGeneratorApp:
             return
         name = self.items_tree.item(selection[0], "values")[0]
         item = next((i for i in self.loot_items if i.name == name), None)
-        if item and messagebox.askyesno("Confirm Delete", f"Delete '{name}'?"):
+        if item:
             self.loot_items.remove(item)
             self.update_loot_file()
             self.populate_items_tree()
-            messagebox.showinfo("Deleted", f"Item '{name}' deleted.")
 
     def add_material(self):
         add_window = tk.Toplevel(self.root)
@@ -684,11 +682,10 @@ class LootGeneratorApp:
                 return
             name = listbox.get(sel[0])
             mat = next((m for m in self.materials if m.name == name), None)
-            if mat and messagebox.askyesno("Confirm Delete", f"Delete '{name}'?"):
+            if mat:
                 self.materials.remove(mat)
                 self.update_material_file()
                 self.populate_materials_tree()
-                messagebox.showinfo("Deleted", f"Material '{name}' deleted.")
                 win.destroy()
 
         ttk.Button(win, text="Delete", command=confirm).pack(pady=5)
@@ -700,11 +697,10 @@ class LootGeneratorApp:
             return
         name = self.materials_tree.item(selection[0], "values")[0]
         mat = next((m for m in self.materials if m.name == name), None)
-        if mat and messagebox.askyesno("Confirm Delete", f"Delete '{name}'?"):
+        if mat:
             self.materials.remove(mat)
             self.update_material_file()
             self.populate_materials_tree()
-            messagebox.showinfo("Deleted", f"Material '{name}' deleted.")
 
     def bulk_add_materials(self):
         bulk_window = tk.Toplevel(self.root)
