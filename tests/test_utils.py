@@ -219,3 +219,26 @@ def test_resolve_material_placeholders_optional_suffix_absent():
     name, value = utils.resolve_material_placeholders("[Stone/o(-encrusted)] Ring", 10, materials)
     assert name == "Ring"
     assert value == 10
+
+
+def test_generate_loot_material_value_overflow_retry():
+    items = [utils.LootItem('[Metal] Sword', 1, '', 3, ['weapon'])]
+    materials = [
+        utils.Material('Gold', 2.0, 'Metal'),
+        utils.Material('Iron', 1.0, 'Metal'),
+    ]
+    random.seed(0)
+    loot = utils.generate_loot(items, points=5, materials=materials)
+    assert loot
+    assert loot[0].point_value <= 5
+
+
+def test_generate_loot_material_value_overflow_unresolvable():
+    items = [utils.LootItem('[Metal] Sword', 1, '', 3, ['weapon'])]
+    materials = [
+        utils.Material('Gold', 2.0, 'Metal'),
+        utils.Material('Silver', 1.8, 'Metal'),
+    ]
+    random.seed(0)
+    loot = utils.generate_loot(items, points=5, materials=materials)
+    assert loot == []

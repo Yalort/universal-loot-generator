@@ -241,13 +241,32 @@ def generate_loot(
         available_items = [i for i in filtered_items if i.point_value <= remaining]
         if not available_items:
             break
-        weights = [1 / i.rarity for i in available_items]
-        item = random.choices(available_items, weights=weights, k=1)[0]
-        if materials:
-            name, value = resolve_material_placeholders(item.name, item.point_value, materials)
-            item = LootItem(name, item.rarity, item.description, value, item.tags, item.size, item.period)
-        loot.append(item)
-        total_points += item.point_value
+
+        added_item = False
+        # Keep trying items until one fits the remaining points
+        while available_items and not added_item:
+            weights = [1 / i.rarity for i in available_items]
+            item = random.choices(available_items, weights=weights, k=1)[0]
+
+            # Attempt to resolve material modifiers without exceeding the limit
+            for _ in range(10000):
+                name, value = item.name, item.point_value
+                if materials:
+                    name, value = resolve_material_placeholders(name, value, materials)
+                if value <= remaining:
+                    loot_item = LootItem(name, item.rarity, item.description, value, item.tags, item.size, item.period)
+                    loot.append(loot_item)
+                    total_points += value
+                    added_item = True
+                    break
+
+            if not added_item:
+                # Discard this item and try another one
+                available_items = [i for i in available_items if i is not item]
+
+        if not added_item:
+            # No remaining items can fit the current point total
+            break
 
     return loot
 
