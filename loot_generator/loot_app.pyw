@@ -242,7 +242,9 @@ class LootGeneratorApp:
         ttk.Button(button_frame, text="Bulk Add Items", command=self.bulk_add_items).pack(fill=tk.X, pady=2)
 
         columns = ("Name", "Rarity", "Description", "Value", "Tags", "Size", "Period")
-        self.items_tree = ttk.Treeview(frame, columns=columns, show="headings")
+        self.items_tree = ttk.Treeview(
+            frame, columns=columns, show="headings", selectmode="extended"
+        )
         for col in columns:
             self.items_tree.heading(col, text=col, command=lambda c=col: self.sort_treeview(self.items_tree, c, False))
             self.items_tree.column(col, anchor=tk.W, minwidth=50)
@@ -456,6 +458,9 @@ class LootGeneratorApp:
         if not selection:
             messagebox.showerror("Error", "Item not selected.")
             return
+        if len(selection) > 1:
+            messagebox.showerror("Error", "Select a single item to edit.")
+            return
         name = self.items_tree.item(selection[0], "values")[0]
         item = next((i for i in self.loot_items if i.name == name), None)
         if not item:
@@ -575,10 +580,16 @@ class LootGeneratorApp:
         if not selection:
             messagebox.showerror("Error", "Item not selected.")
             return
-        name = self.items_tree.item(selection[0], "values")[0]
-        item = next((i for i in self.loot_items if i.name == name), None)
-        if item:
-            self.loot_items.remove(item)
+
+        names = [self.items_tree.item(s, "values")[0] for s in selection]
+        deleted = False
+        for name in names:
+            item = next((i for i in self.loot_items if i.name == name), None)
+            if item:
+                self.loot_items.remove(item)
+                deleted = True
+
+        if deleted:
             self.update_loot_file()
             self.populate_items_tree()
 
@@ -787,7 +798,8 @@ class LootGeneratorApp:
     def show_item_menu(self, event):
         iid = self.items_tree.identify_row(event.y)
         if iid:
-            self.items_tree.selection_set(iid)
+            if iid not in self.items_tree.selection():
+                self.items_tree.selection_set(iid)
             try:
                 self.item_menu.tk_popup(event.x_root, event.y_root)
             finally:
