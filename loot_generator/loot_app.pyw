@@ -252,6 +252,12 @@ class LootGeneratorApp:
         scrollbar.grid(row=0, column=2, sticky=tk.NS)
         self.items_tree.configure(yscrollcommand=scrollbar.set)
         self.items_tree.bind("<Double-1>", self.edit_item)
+        self.items_tree.bind("<Button-3>", self.show_item_menu)
+        self.items_tree.bind("<Button-2>", self.show_item_menu)
+
+        self.item_menu = tk.Menu(self.items_tree, tearoff=0)
+        self.item_menu.add_command(label="Edit", command=self.edit_item)
+        self.item_menu.add_command(label="Delete", command=self.delete_selected_item)
 
         frame.columnconfigure(1, weight=1)
         frame.rowconfigure(0, weight=1)
@@ -279,6 +285,12 @@ class LootGeneratorApp:
         scrollbar.grid(row=0, column=2, sticky=tk.NS)
         self.materials_tree.configure(yscrollcommand=scrollbar.set)
         self.materials_tree.bind("<Double-1>", self.edit_material)
+        self.materials_tree.bind("<Button-3>", self.show_material_menu)
+        self.materials_tree.bind("<Button-2>", self.show_material_menu)
+
+        self.material_menu = tk.Menu(self.materials_tree, tearoff=0)
+        self.material_menu.add_command(label="Edit", command=self.edit_material)
+        self.material_menu.add_command(label="Delete", command=self.delete_selected_material)
 
         frame.columnconfigure(1, weight=1)
         frame.rowconfigure(0, weight=1)
@@ -559,6 +571,19 @@ class LootGeneratorApp:
 
         ttk.Button(win, text="Delete Item", command=confirm_delete).pack(pady=5)
 
+    def delete_selected_item(self):
+        selection = self.items_tree.selection()
+        if not selection:
+            messagebox.showerror("Error", "Item not selected.")
+            return
+        name = self.items_tree.item(selection[0], "values")[0]
+        item = next((i for i in self.loot_items if i.name == name), None)
+        if item and messagebox.askyesno("Confirm Delete", f"Delete '{name}'?"):
+            self.loot_items.remove(item)
+            self.update_loot_file()
+            self.populate_items_tree()
+            messagebox.showinfo("Deleted", f"Item '{name}' deleted.")
+
     def add_material(self):
         add_window = tk.Toplevel(self.root)
         add_window.title("Add Material")
@@ -668,6 +693,19 @@ class LootGeneratorApp:
 
         ttk.Button(win, text="Delete", command=confirm).pack(pady=5)
 
+    def delete_selected_material(self):
+        selection = self.materials_tree.selection()
+        if not selection:
+            messagebox.showerror("Error", "Material not selected.")
+            return
+        name = self.materials_tree.item(selection[0], "values")[0]
+        mat = next((m for m in self.materials if m.name == name), None)
+        if mat and messagebox.askyesno("Confirm Delete", f"Delete '{name}'?"):
+            self.materials.remove(mat)
+            self.update_material_file()
+            self.populate_materials_tree()
+            messagebox.showinfo("Deleted", f"Material '{name}' deleted.")
+
     def bulk_add_materials(self):
         bulk_window = tk.Toplevel(self.root)
         bulk_window.title("Bulk Add Materials")
@@ -749,6 +787,24 @@ class LootGeneratorApp:
                 tk.END,
                 values=(mat.name, mat.modifier, mat.type),
             )
+
+    def show_item_menu(self, event):
+        iid = self.items_tree.identify_row(event.y)
+        if iid:
+            self.items_tree.selection_set(iid)
+            try:
+                self.item_menu.tk_popup(event.x_root, event.y_root)
+            finally:
+                self.item_menu.grab_release()
+
+    def show_material_menu(self, event):
+        iid = self.materials_tree.identify_row(event.y)
+        if iid:
+            self.materials_tree.selection_set(iid)
+            try:
+                self.material_menu.tk_popup(event.x_root, event.y_root)
+            finally:
+                self.material_menu.grab_release()
 
     def sort_treeview(self, tree, col, reverse):
         data = [(tree.set(k, col), k) for k in tree.get_children("")]
